@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="script.js">
+    </script>
+</head>
+
+<body>
+    <form class="e1">
+        KIỂM TRA TỨ GIÁC LỒI
+        <table>
+            <tr>
+                <td></td>
+                <td>X</td>
+                <td>Y</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td><input type="text" id="xa" /><span id="er_xa"></span></td>
+                <td><input type="text" id="ya" /><span id="er_ya"></span></td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td><input type="text" id="xb" /><span id="er_xb"></span></td>
+                <td><input type="text" id="yb" /><span id="er_yb"></span></td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td><input type="text" id="xc" /><span id="er_xc"></span></td>
+                <td><input type="text" id="yc" /><span id="er_yc"></span></td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td><input type="text" id="xd" /><span id="er_xd"></span></td>
+                <td><input type="text" id="yd" /><span id="er_yd"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" onclick="check1()" value="Kiểm tra" />
+                    <input type="reset" value="Xóa" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr/>
+    <form class="e2">
+        KIỂM TRA VỊ TRÍ ĐIỂM P
+        <table>
+            <tr>
+                <td></td>
+                <td>X</td>
+                <td>Y</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" id="xp" /></td>
+                <td><input type="text" id="yp" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" onclick="check2()" value="Kiểm tra" />
+                    <input type="reset" value="Xóa" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr/>
+    <form class="e3">
+        TÌM CHUỖI CON GIẢM DÀI NHẤT
+        <table>
+            <tr>
+                <td>Nhập chuỗi số: </td>
+                <td><input type="text" id="str" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" onclick="Find()" value="Tìm" />
+                    <input type="reset" value="Đặt lại" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+</body>
+
+</html>
