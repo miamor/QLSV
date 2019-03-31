@@ -564,7 +564,7 @@ class xmlDb
 
         // if we use join, get columns of join table
         /*if (!is_null($this->join_table)) {
-            $jtable_columns = $this->getColumns($this->join_table);
+        $jtable_columns = $this->getColumns($this->join_table);
         }*/
         $jtable_columnss = [];
         if (!is_null($this->join_tables)) {
@@ -577,8 +577,11 @@ class xmlDb
         //print_r($this->xml);
 
         foreach ($this->xml->xpath('//database/' . $this->table . '/row' . $this->getQuery()) as $i => $row) {
+            //print_r($row);
 
             foreach ($row->children() as $column) {
+
+                //print_r($column);
 
                 if (in_array($column->getName(), $this->columns)) {
 
@@ -589,36 +592,42 @@ class xmlDb
                         if (!is_null($this->join_table)) {
 
                             if ($column->getName() == $this->primary_key) {
+                                //print('//database/' . $this->join_table . '/row[' . $this->foreign_key . ' = ' . (string) $column . ']');
 
                                 $jtable = $this->xml->xpath('//database/' . $this->join_table . '/row[' . $this->foreign_key . ' = ' . (string) $column . ']');
 
                                 if (!empty($jtable)) {
-                                    //print_r($jtable);
 
                                     foreach ($jtable[0] as $jcolumn) {
-                                        //print_r($this->join_table);
+                                        //print_r($jtable[0]);
 
                                         if (in_array($jcolumn->getName(), $this->columns)) {
 
+                                            //print_r($this->columns);
                                             /*if ($jcolumn->getName() == 'id') {
-                                                continue;
+                                            continue;
                                             }*/
 
-                                            $columns[$this->join_table.'_'.$jcolumn->getName()] = (string) $jcolumn;
+                                            $columns[$this->join_table . '_' . $jcolumn->getName()] = (string) $jcolumn;
+
+                                            //break;
                                         }
                                     }
+                                    //print_r($columns);
 
                                 } else {
 
                                     // fill empty values
-                                    foreach ($jtable_columns as $name) {
-
-                                        if (in_array($name, $this->columns)) {
-                                            /*if ($name == 'id') {
+                                    foreach ($jtable_columnss as $jtable_columns) {
+                                        foreach ($jtable_columns as $name) {
+    
+                                            if (in_array($name, $this->columns)) {
+                                                /*if ($name == 'id') {
                                                 continue;
-                                            }*/
+                                                }*/
 
-                                            $columns[$this->join_table.'_'.$name] = '';
+                                                $columns[$this->join_table . '_' . $name] = '';
+                                            }
                                         }
 
                                     }

@@ -179,6 +179,7 @@ class SinhVien extends Config {
             $this->phone = $row['phone'];
             $this->birthday = $row['birthday'];
             $this->ethnic = $row['ethnic'];
+            $this->class = $row['class'];
             $this->timelife = $row['timelife'];
             $this->status = $row['status'];
             $this->created = $row['created'];
