@@ -33,9 +33,11 @@ class xmlDb
     private $columns = [];
     private $sort = [];
     private $join_table = null;
-    private $join_tables = [];
     private $primary_key = null;
     private $foreign_key = null;
+    private $join_tables = [];
+    private $primary_keys = [];
+    private $foreign_keys = [];
     private $limit = 0;
     private $affected_rows = 0;
 
@@ -351,9 +353,11 @@ class xmlDb
     public function join($table, $primary_key, $foreign_key)
     {
         $this->join_table = $table;
-        array_push($this->join_tables, $table);
         $this->primary_key = $primary_key;
         $this->foreign_key = $foreign_key;
+        array_push($this->join_tables, $table);
+        array_push($this->primary_keys, $primary_key);
+        array_push($this->foreign_keys, $foreign_key);
 
         // insert primary_key into select columns
         array_push($this->columns, $primary_key);
@@ -587,14 +591,14 @@ class xmlDb
 
                     //print_r($this->join_tables);
                     //print_r($this->join_table);
-                    foreach ($this->join_tables as $this->join_table) {
+                    foreach ($this->join_tables as $i => $join_table) {
                         // join
-                        if (!is_null($this->join_table)) {
+                        if (!is_null($join_table)) {
 
-                            if ($column->getName() == $this->primary_key) {
-                                //print('//database/' . $this->join_table . '/row[' . $this->foreign_key . ' = ' . (string) $column . ']');
+                            if ($column->getName() == $this->primary_keys[$i]) {
+                                //print('//database/' . $join_table . '/row[' . $this->foreign_keys[$i] . ' = ' . (string) $column . ']');
 
-                                $jtable = $this->xml->xpath('//database/' . $this->join_table . '/row[' . $this->foreign_key . ' = ' . (string) $column . ']');
+                                $jtable = $this->xml->xpath('//database/' . $join_table . '/row[' . $this->foreign_keys[$i] . ' = ' . (string) $column . ']');
 
                                 if (!empty($jtable)) {
 
@@ -608,7 +612,7 @@ class xmlDb
                                             continue;
                                             }*/
 
-                                            $columns[$this->join_table . '_' . $jcolumn->getName()] = (string) $jcolumn;
+                                            $columns[$join_table . '_' . $jcolumn->getName()] = (string) $jcolumn;
 
                                             //break;
                                         }
@@ -626,7 +630,7 @@ class xmlDb
                                                 continue;
                                                 }*/
 
-                                                $columns[$this->join_table . '_' . $name] = '';
+                                                $columns[$join_table . '_' . $name] = '';
                                             }
                                         }
 
@@ -832,9 +836,11 @@ class xmlDb
         $this->columns = [];
         $this->sort = [];
         $this->join_table = null;
-        $this->join_tables = [];
         $this->primary_key = null;
         $this->foreign_key = null;
+        $this->join_tables = [];
+        $this->primary_keys = [];
+        $this->foreign_keys = [];
         $this->limit = 0;
 
         return $this;

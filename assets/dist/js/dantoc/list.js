@@ -20,6 +20,7 @@ function del (itemID) {
 }
 
 function update (itemID) {
+    console.log(MAIN_URL + '/dantoc/'+itemID+'?v=window');
     $('.the-board').load(MAIN_URL + '/dantoc/'+itemID+'?v=window', function (data) {
         popup();
         $('.popup-content [role="close"], .popup-inner > div:not(".popup-content")').click(function () {

@@ -88,7 +88,13 @@ class DanToc extends Config
         $row = $this->conn->getRow();
         $row = json_decode(json_encode($row), true);
 
-        $row['name'] = '<a href="' . MAIN_URL . '/dantoc/' . $row['id'] . '">' . $row['name'] . '</a>';
+        //$row['name'] = '<a href="' . MAIN_URL . '/dantoc/' . $row['id'] . '">' . $row['name'] . '</a>';
+
+        if ($row['id']) {
+            $this->id = $row['id'];
+            $this->name = $row['name'];
+            $this->created = $row['created'];
+        }
 
         return ($row['id'] ? $row : null);
     }

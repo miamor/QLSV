@@ -45,8 +45,8 @@ class Lop extends Config
 
     public function delete()
     {
-        $updateSV = $this->conn->in('sinhvien')->where('ethnic', $this->id)->update([
-            'ethnic' => '',
+        $updateSV = $this->conn->in('sinhvien')->where('class', $this->id)->update([
+            'class' => '',
         ]);
 
         $exec = $this->conn->from($this->table_name)
@@ -88,7 +88,13 @@ class Lop extends Config
         $row = $this->conn->getRow();
         $row = json_decode(json_encode($row), true);
 
-        $row['name'] = '<a href="' . MAIN_URL . '/lop/' . $row['id'] . '">' . $row['name'] . '</a>';
+        //$row['name'] = '<a href="' . MAIN_URL . '/lop/' . $row['id'] . '">' . $row['name'] . '</a>';
+
+        if ($row['id']) {
+            $this->id = $row['id'];
+            $this->name = $row['name'];
+            $this->created = $row['created'];
+        }
 
         return ($row['id'] ? $row : null);
     }
