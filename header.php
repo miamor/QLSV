@@ -72,7 +72,7 @@ $config->addJS('dist', 'main.js'); ?>
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-          <!-- search form -->
+          <!-- search form --
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Tìm kiếm...">
@@ -84,7 +84,7 @@ $config->addJS('dist', 'main.js'); ?>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">Giao diện quản lý</li>
+            <li class="header hidden">Giao diện quản lý</li>
             <li>
               <a href="<?php echo MAIN_URL ?>/sinhvien">
                 <i class="fa fa-users"></i> <span>Sinh viên</span>

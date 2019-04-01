@@ -2,9 +2,8 @@
 
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-	<b>Admin page phiên bản</b> 1.0.0
   </div>
-  <strong>miamor</strong> bản quyền mọi nội dung.
+  <strong>miamor</strong> © 2018
 </footer>
 
 <?php $config->echoJS() ?>

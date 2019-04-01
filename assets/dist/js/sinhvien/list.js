@@ -52,6 +52,7 @@ function update (itemID) {
     })
 }
 
+
 $(document).ready(function () {
     table = $('#buyList').DataTable({
 		"ajax": MAIN_URL+'/requests/sinhvien/readAll.php',
@@ -78,9 +79,22 @@ $(document).ready(function () {
 		],
         "fnRowCallback": function (nRow, aData, iDisplayIndex) {
             console.log(aData);
+            $(nRow).attr('attr-id', aData.id);
+            //ajaxClassEth(aData.id);
             if (aData.status == 1) {
                 $(nRow).addClass('lock');
             }
+
+            $(nRow).find('td:eq(4) a, td:eq(5) a').click(function () {
+                console.log('a');
+                $('.the-board').load($(this).attr('href')+'?v=window', function (data) {
+                    popup();
+                    $('.popup-content [role="close"], .popup-inner > div:not(".popup-content")').click(function () {
+                        table.ajax.reload();
+                    })
+                });
+                return false
+            })
         }
     });
     
